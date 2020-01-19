@@ -1,5 +1,40 @@
 {
     "tests": {
+        "only_shanghai_can_see": {
+            "description": "only shanghai ip can see",
+            "version" : 1,
+            "rule": "${city == 'shanghai'}",
+            "salt": "only_shanghai",
+            "buckets" : [ {
+                "name" : "Not Login Shanghai User",
+                "value" : -1
+            }, {
+                "name" : "Do Login Shanghai User",
+                "value" : 0
+            }],
+            "allocations" : [{
+                    "rule" : "${loggedIn}",
+                    "ranges" : [ {
+                        "length" : 0.0,
+                        "bucketValue" : -1
+                    }, {
+                        "length" : 1.0,
+                        "bucketValue" : 0
+                    } ]
+                },
+                {
+                    "rule" : "${!loggedIn}",
+                    "ranges" : [ {
+                        "length" : 1.0,
+                        "bucketValue" : -1
+                    }, {
+                        "length" : 0.0,
+                        "bucketValue" : 0
+                    } ]
+                }
+            ],
+            "testType" : "USER"
+        },
         "buttoncolortst" : {
             "description" : "Test which button color has a higher click-through.",
             "version" : 1,

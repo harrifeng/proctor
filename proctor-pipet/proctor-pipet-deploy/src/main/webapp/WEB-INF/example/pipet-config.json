@@ -9,6 +9,11 @@
             "type": "boolean",
             "defaultValue": false
         },
+        "city": {
+            "source": "QUERY",
+            "type": "string",
+            "defaultValue": false
+        },
         "userAgent": {
             "source": "HEADER",
             "sourceKey": "User-Agent",
